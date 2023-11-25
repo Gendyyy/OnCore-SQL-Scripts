@@ -231,42 +231,6 @@ group by
     protocol_id,
     protocol_no;
 
-<<<<<<< HEAD
--- select protocol_id, protocol_no, count(*)
--- from uacc_oncore_prod.sv_study_spec_status_history s
--- group by protocol_id,protocol_no
--- ;
-
--- with
---     rw
---     as
---     (
---         select s.*, row_number() over (
---         partition by protocol_id
---         order by 
-            
---                 case when status = 'New' then 1
---                     when status = 'Completed' then 2
---                     when status = 'Coordinator Signoff' then 3
---                     when status = 'Released' then 4
---                 else 0
---                 end 
---              desc
---             )rn
-
---         from uacc_oncore_prod.sv_study_spec_status_history s
---         WHERE PROTOCOL_NO IN ('2009015316', --SUSIE FIRST
---                           '2005630160', -- WENDY
---                           '2102537612', --SUSIE SECOND
---                           '1609876907') -- 41 records
---             and version_no = 1 and strikethrough = 'N'
---     )
--- select *
--- from rw
--- where rn = 1
--- order by protocol_id
-            ;
-=======
 with rw as (
         select
             s.*,
@@ -301,4 +265,3 @@ select *
 from rw
 where rn = 1
 order by protocol_id;
->>>>>>> a87e86a5bdee08c7940da1d995c34f798dec092c

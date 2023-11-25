@@ -1,3 +1,5 @@
+use OnCoreStaging
+go
 with
     TransformProtocols
     as
@@ -7,7 +9,7 @@ with
             case when p.pi_email = s.email_address then p.pi_email else s.email_address end EMAIL,
             s.staff_role,
             s.staff_name,
-            CONCAT(p.protocol_no,case when p.accrual_summary = 'Y' then '(Y)' else null end) Protocol_No,
+            p.protocol_no,
             case when primary_crc is null and primary_irb_coord is null then 1 else 0 end NoCoords
         from protocols p left join staff s on p.protocol_id = s.protocol_id
         where 
