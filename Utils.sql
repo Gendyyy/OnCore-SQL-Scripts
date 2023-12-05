@@ -8,9 +8,8 @@
 -- SQL Server 2005: Major version 9
 
 -- Truncate and Reset the identity Counter --
-  delete from oncoredw.[dw].[DimAudit]
-  where AuditKey != -1
-  DBCC CHECKIDENT ('oncoredw.[dw].[DimAudit]', RESEED, 1);
+  delete from oncoredw.[dw].[FactProtocols]
+  DBCC CHECKIDENT ('oncoredw.[dw].[FactProtocols]', RESEED, 1);
 
 
 -- Get which edition and the running bitness (i.e. Standard Edition (64-bit)) --
@@ -22,4 +21,18 @@ SELECT
     SERVERPROPERTY('ProductLevel') AS 'Product Level',
     SERVERPROPERTY('Edition') AS 'Edition'
 
+-- Adding new column to an existing table
 
+use OnCoreStaging
+alter TABLE dbo.protocols
+add SponsorNo VARCHAR(100)
+
+
+-- Changing Column Datatype
+
+alter table protocols
+alter column sponsor nvarchar(150)
+
+-- Execute Stored Procedure on Oracle DB through Linked Server
+
+exec('BEGIN UACC_ONCORE_RW_UTILS.UPDATE_PROTOCOLS; END;') at ONCOREPROD;

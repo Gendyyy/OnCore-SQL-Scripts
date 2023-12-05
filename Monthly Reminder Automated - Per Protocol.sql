@@ -1,6 +1,7 @@
 
 use OnCoreStaging
 go
+-- EXEC ('delete from [CLINICALTRIALDATA].[DBO].[AccrualStudyStaffMonthlyReminder]') at [COM-DTRUST-PROD.BLUECAT.ARIZONA.EDU];
    with
     TransformProtocols
     as
@@ -25,17 +26,18 @@ go
             where lower(status) = 'closed to accrual' and status_date >= CAST(DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) - 1, 0) AS DATE) )
             )
     )
-    -- INSERT INTO [COM-DTRUST-PROD.BLUECAT.ARIZONA.EDU].[ClinicalTrialData].[DBO].[PIMonthlyReminder] (subject, email, staff_name, NumberOfProtocols, Staff_Roles, ListOfProtocols)
+    -- INSERT INTO [COM-DTRUST-PROD.BLUECAT.ARIZONA.EDU].[ClinicalTrialData].[DBO].[AccrualStudyStaffMonthlyReminder] (Protocol_No, PI_Email, MembersEmails, MembersNames, MembersRoles)
 select
-    'Monthly Reminder to Update OnCore for Quarterly Report' subject,
     Protocol_No,
     max(PI_Email) as PI_Email,
-    STRING_AGG(email,',') membersEmails,
-    string_agg(staff_name,' ; ') membersNames,
-    string_agg(staff_role,',') membersRoles
+    STRING_AGG(email,';') MembersEmails,
+    string_agg(staff_name,' ; ') MembersNames,
+    string_agg(staff_role,';') MembersRoles
 from TransformProtocols tp
 where staff_role in
 ('Accrual Data Contact', 'Primary CRC', 'Primary IRB Coordinator')
     or
     (staff_role = 'Principal Investigator' and NoCoords =1)
 group by Protocol_No
+
+-- exec PushMonthlyReminderToDTrust

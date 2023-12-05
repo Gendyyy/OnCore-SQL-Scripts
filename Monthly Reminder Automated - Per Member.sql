@@ -46,6 +46,8 @@ group by email,staff_name
 -- BEGIN TRY
         -- Start a transaction
         BEGIN TRANSACTION;
+
+        
 EXEC ('delete from [CLINICALTRIALDATA].[DBO].[PIMONTHLYREMINDER]') at [COM-DTRUST-PROD.BLUECAT.ARIZONA.EDU];
 
 

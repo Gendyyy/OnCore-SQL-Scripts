@@ -70,3 +70,62 @@ N'gendy@arizona.edu;gendy@arizona.edu;shelbylegendre@arizona.edu' MembersEmails,
 N'Algendy, Ahmed;Algendy, Ahmed;LeGendre, Shelby' MembersNames,
 N'Primary CRC;Primary IRB Coordinator' MembersRoles
 
+select 
+
+'Protocol "1909985869" Monthly Reminder to Update OnCore for Quarterly Report' as subject,
+'1909985869' Protocol_No,
+N'' PI_Email,
+-- N'gendy@arizona.edu;gendy@arizona.edu;shelbylegendre@arizona.edu' MembersEmails,
+N'gendy@arizona.edu;gendy@arizona.edu' MembersEmails,
+N'Algendy, Ahmed;Algendy, Ahmed' MembersNames,
+N'Primary CRC;Primary IRB Coordinator' MembersRoles
+
+
+
+select top 10
+
+protocol_id,
+protocol_no,
+Title,
+pi_name,
+PI_Email,
+dmg as ManagementGroup,
+Protocol_Institutions,
+Department_Name,
+[Library],
+
+Data_Monitoring,
+accrual_summary,
+Target_Accrual as LowerTargetAccrual,
+Target_Accrual_Upper as UpperTargetAccrual
+Current_Status,
+Current_Status_Date,
+
+Created_Date,
+Initial_Open_Date,
+Closed_Date,
+Study_Closure_Date,
+primary_crc,
+primary_irb_coord,
+sponsor,
+len(SPONSOR_NUMBER)
+
+from ONCOREPROD..UACC_ONCORE_RW_UTILS.PROTOCOLS
+where protocol_no is not null
+order by len(SPONSOR_NUMBER) desc
+
+
+use OnCoreDW
+-- select * from Protocols where protocol_no in ('36504','37324')
+select * from dw.FactProtocols where protocol_no in ('36504','37324','STUDY00001721')
+
+select * from oncoredw.dw.FactProtocols where protocol_no = '2002421904'
+select * from oncoredw.dw.FactEnrollments where Protocol_Key = '2235'
+
+select * from oncorestaging.dbo.enrollments  e
+where
+-- protocol_no = '2002421904'
+e.uahs_enrollments is not null and e.affiliates_enrollments is not null
+select * from oncorestaging.dbo.protocols where protocol_no = '2002421904'
+
+select * from ONCOREPROD..UACC_ONCORE_RW_UTILS.ACUITY_REPORT_ONCOLOGY_REV2
