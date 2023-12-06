@@ -6,6 +6,7 @@
     - [Recover Procedure Report](#recover-procedure-report)
     - [UACC Report](#uacc-report)
     - [Acuity Report](#acuity-report)
+    - [SRC Monthly Report](#src-monthly-report)
 
 ---
 
@@ -46,3 +47,12 @@ def my_function():
 
 ### Acuity Report
 >[SQL LINK](https://github.com/Gendyyy/OnCore-SQL-Scripts/blob/master/Acuity%20Report.sql)
+
+### SRC Monthly Report
+
+> This report is used by Linda Maynard & Elizabeth McPeak for the UACC SRC Monthly Review Report. 
+> Its based on this criteria 
+•	Open to accrual at 6 month anniversary [studies open to accrual in June 2023]
+•	Open to accrual annual anniversary [studies open to accrual December]
+•	Next Review Date (December 2023)
+[SQL Link](https://github.com/Gendyyy/OnCore-SQL-Scripts/blob/master/UACC SRC%20Accrual%20Monthly%20Review%20Report.sql)
