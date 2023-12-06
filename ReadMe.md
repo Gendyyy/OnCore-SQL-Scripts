@@ -11,7 +11,7 @@
 
 ### Calendar Report
 > This report is generated based on Wendy's request for showing the duration of transistioning from 1 Calendar Status to another.
-[SQL Link](https://github.com/Gendyyy/OnCore-SQL-Scripts/blob/master/Calendar%20Report.sql)
+[SQL Link](https://dev.azure.com/COM-CTMS/_git/OnCore-CTMS-Scripts?anchor=acuity-report&path=/Calendar%20Report.sql)
 ![Sample Data](image.png)
 
 
@@ -30,19 +30,19 @@ def my_function():
 ### Monthly Reminder Automated - Per Protocol
 
 > This report generates the reminder emails for Summary Accrual Protocols' staff members
-[SQL Link](https://github.com/Gendyyy/OnCore-SQL-Scripts/blob/master/Monthly%20Reminder%20Automated%20-%20Per%20Protocol.sql)
+[SQL Link](https://dev.azure.com/COM-CTMS/_git/OnCore-CTMS-Scripts?anchor=acuity-report&path=/Monthly%20Reminder%20Automated%20-%20Per%20Protocol.sql)
 ![Alt text](image-1.png)
 
 ### Recover Procedure Report
 
 > This report was requested by Erica Christy, for now this report can only be generated from Oracle DB directly through SQL Developer because the amount of data is so big and the query times out through the Linked Server. Still wanna find a workaround to it
-[SQL LINK](https://github.com/Gendyyy/OnCore-SQL-Scripts/blob/master/Recover%20Procedure.sql)
+[SQL LINK](https://dev.azure.com/COM-CTMS/_git/OnCore-CTMS-Scripts?anchor=acuity-report&path=/Recover%20Procedure.sql)
 
 
 ### UACC Report
 
 > This report still being pulled from SQL Developer
-[SQL LINK](https://github.com/Gendyyy/OnCore-SQL-Scripts/blob/master/UACC%20Report.sql)
+[SQL LINK](https://dev.azure.com/COM-CTMS/_git/OnCore-CTMS-Scripts?anchor=acuity-report&path=/UACC%20Report.sql)
 
 ### Acuity Report
->[SQL LINK](https://github.com/Gendyyy/OnCore-SQL-Scripts/blob/master/Acuity%20Report.sql)
+>[SQL LINK](https://dev.azure.com/COM-CTMS/_git/OnCore-CTMS-Scripts?anchor=acuity-report&path=/Acuity%20Report.sql)
