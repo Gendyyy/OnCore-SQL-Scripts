@@ -36,3 +36,7 @@ alter column sponsor nvarchar(150)
 -- Execute Stored Procedure on Oracle DB through Linked Server
 
 exec('BEGIN UACC_ONCORE_RW_UTILS.UPDATE_PROTOCOLS; END;') at ONCOREPROD;
+
+-- change column name
+
+EXEC sp_rename 'table_name.old_column_name', 'new_column_name', 'COLUMN';

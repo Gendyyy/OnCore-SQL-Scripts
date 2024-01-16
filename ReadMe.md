@@ -55,4 +55,4 @@ def my_function():
 •	Open to accrual at 6 month anniversary [studies open to accrual in June 2023]
 •	Open to accrual annual anniversary [studies open to accrual December]
 •	Next Review Date (December 2023)
-[SQL Link](https://dev.azure.com/COM-CTMS/_git/OnCore-CTMS-Scripts?anchor=acuity-report&path=/SRC%20Accrual%20Monthly%20Review%20Report.sql)
+[SQL Link](https://dev.azure.com/COM-CTMS/_git/OnCore-CTMS-Scripts?path=/UACC%20SRC%20Accrual%20Monthly%20Review%20Report.sql)
