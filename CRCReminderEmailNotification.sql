@@ -52,22 +52,29 @@ from Protocols p
                 end,
                 ';'
             ) PrimaryCRCNames,
-            max(
+            STRING_AGG(
                 case
                     when s.STAFF_ROLE = 'Principal Investigator' then s.EMAIL_ADDRESS
-                end
+                end, ';'
             ) as PI_Email,
-            max(
+            STRING_AGG(
                 case
                     when s.STAFF_ROLE = 'Primary IRB Coordinator' then s.EMAIL_ADDRESS
-                end
+                end,';'
             ) as PrimaryIRBCEmail,
-            MAX(case
+            STRING_AGG(case
                     when s.STAFF_ROLE = 'Primary IRB Coordinator' then s.STAFF_NAME
-                end) as PrimaryIRBCName
+                end, ';'
+                ) as PrimaryIRBCName
         from staff s
         where s.PROTOCOL_ID = p.protocol_id
+        and ACTIVE_CONTACT_FLAG = 'Y'
+        and (GETDATE() < STOP_DATE or STOP_DATE is null)
+
     ) Staff
 where p.Current_Status not in ('ABANDONED', 'ON HOLD', 'IRB STUDY CLOSURE')
     and CompletedCal.[status] is not null -- and dbo.businessdaysduration(CompletedCal.created_date, getdate()) > 7
     and CRCCal.[status] is null 
+
+    -- select * from staff
+    -- where protocol_id = 17328

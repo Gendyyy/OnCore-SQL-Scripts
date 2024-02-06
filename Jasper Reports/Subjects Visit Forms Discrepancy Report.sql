@@ -1,11 +1,12 @@
 select
-                   protocol_no,
+                   spfd.protocol_no,
                    case (select count(*) from sv_user_pcl_permission upp where upp.contact_id = $P{userContactId} and upp.protocol_id = spfd.protocol_id and upp.function_name = 'SUBJECT-IDENTIFICATION')
                      when 1 then spfd.subject_mrn
                      else '*********'
                    end subject_mrn,
-                   sequence_number,
+                   spfd.sequence_number,
                    form_no,
+                   procedure,
                    visit,
                    discrepancy,
                    response,
@@ -18,10 +19,13 @@ select
                    disc_status,
                    resolved_time,
                    study_site
+
                  from
-                   sv_sdc_pcs_form_disrepancies spfd
+                   FROM_DISCREPANCIES spfd
+                   LEFT JOIN uacc_oncore_prod.rv_subject_visit_procedure VP
+ON spfd.SD_PCS_TRACKING_EVALUATION_ID = VP.SD_PCS_TRACKING_EVALUATION_ID
                  where
-                   protocol_no like '%' || $P{ProtocolNo} || '%'
+                   spfd.protocol_no like '%' || $P{ProtocolNo} || '%'
                    and form_no like '%' || $P{FormNo} || '%'
                    and disc_status in ('Open', decode($P{ActiveFlag}, NULL, 'Closed', NULL))
                    and (to_date(disc_created_date, 'MM/DD/YYYY') >= NVL($P{CreatedFromDate}, to_date(disc_created_date, 'MM/DD/YYYY')))

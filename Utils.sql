@@ -27,6 +27,10 @@ use OnCoreStaging
 alter TABLE dbo.protocols
 add SponsorNo VARCHAR(100)
 
+-- delete existing column
+
+ALTER TABLE table_name
+DROP COLUMN column_name;
 
 -- Changing Column Datatype
 
@@ -40,3 +44,7 @@ exec('BEGIN UACC_ONCORE_RW_UTILS.UPDATE_PROTOCOLS; END;') at ONCOREPROD;
 -- change column name
 
 EXEC sp_rename 'table_name.old_column_name', 'new_column_name', 'COLUMN';
+
+-- get first day of last month
+
+select CAST(DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) - 1, 0) AS DATE)
