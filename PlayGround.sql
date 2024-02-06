@@ -51,13 +51,13 @@ order by rc.[Fiscal Year] desc
         select
             sf.[Fiscal Year] ,
             sf.[College Name] ,
-            sf.[Organization-Name] ,
+            sf.[Organization-Name] as Dept ,
             sf.[Investigator Name] ,
             sf.[Investigator Id] ,
             format(round(sum(sf.[MTDC Base]),0),'N0') MTDC,
             format(round(sum(sf.[Total Expenses]),0),'N0') Expenditures,
-            -- format(round(sum(sf.[Area by PI]),0),'N0') [Research Area],
-            round(sum(sf.[Area by PI]),0) [Research Area],
+            format(round(sum(sf.[Area by PI]),0),'N0') [Research Area],
+            -- round(sum(sf.[Area by PI]),0) [Research Area],
             format(round(sum(sf.[Total Obligated Amount]),0),'N0') Obligated,
             case when sum(sf.[Area by PI]) != 0 and [Fiscal Year] = 2024 
             then format(round(sum(PI_Metric_1.PI_AVG_MTDC)/sum(sf.[Area by PI]),2),'N0') end as [Current $/SqFt],
@@ -71,7 +71,7 @@ order by rc.[Fiscal Year] desc
             from SpaceFunding sf_inner
             where sf_inner.[Fiscal Year] in ('2021','2022','2023') and
                 -- [Organization-Name] = 'Pharmacology and Toxicology' and
-                -- [Investigator Name] != '-'
+                [Investigator Name] != '-' and
                 sf_inner.[Investigator Id] = sf.[Investigator Id]) as PI_Metric_1
         where 
 -- lower([Organization-Name]) like '%pedia%'
@@ -93,8 +93,6 @@ order by rc.[Fiscal Year] desc
 --         and [Organization-Name] = 'Pharmacology and Toxicology') as [Over/Under]
 -- from a as a
 -- where [Organization-Name] = 'Pharmacology and Toxicology'
-
-6954065.137844424
 
 ------------- MTDC SUMMARY
 
