@@ -1,0 +1,20 @@
+select * from openquery(ONCOREPROD, 'select p.protocol_no,
+       p.title,
+       p.short_title,
+       p.nct_id,
+       PI_NAME,
+       p.PI_EMAIL,
+       pd.EXCLUDE_PROTOCOL_ON_WEB,
+       pd.OBJECTIVES,
+       pd.SCOPE,
+       pd.AGE,
+       pd.REGISTRATION_CENTER,
+       p.ACCRUAL_NOT_APPLICABLE,
+       p.TARGET_ACCRUAL,
+       p.ESTIMATED_COMPLETION_DATE,
+       p.PROTOCOL_INSTITUTIONS,
+       p.PRIMARY_CRC,
+       p.PRIMARY_IRB_COORD,
+       p.IRB_EXPIRATION_DATE
+from UACC_ONCORE_RW_UTILS.PROTOCOLS p
+         left join UACC_ONCORE_PROD.RV_PROTOCOL_DETAILS pd on pd.PROTOCOL_ID = p.PROTOCOL_ID');
